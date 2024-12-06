@@ -1,0 +1,94 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Optimización de Transporte</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard">
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fas fa-truck"></i>
+                <span>Modelo de Transporte</span>
+            </div>
+            <div class="nav-items">
+                <button class="nav-item active" data-step="input">
+                    <i class="fas fa-pencil-alt"></i>
+                    <span>Datos</span>
+                </button>
+                <button class="nav-item" data-step="solution">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Solución</span>
+                </button>
+            </div>
+        </nav>
+        
+        <main class="content">
+            <div class="panel input-panel active">
+                <h2>Configuración del Modelo</h2>
+                
+                <div class="config-grid">
+                    <div class="config-item">
+                        <label>Orígenes</label>
+                        <div class="number-input">
+                            <button class="decrease">-</button>
+                            <input type="number" id="sources" value="3" min="2" max="10">
+                            <button class="increase">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="config-item">
+                        <label>Destinos</label>
+                        <div class="number-input">
+                            <button class="decrease">-</button>
+                            <input type="number" id="destinations" value="3" min="2" max="10">
+                            <button class="increase">+</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="matrix-wrapper">
+                    <h3>Costos de Transporte</h3>
+                    <div id="costs-matrix" class="matrix"></div>
+                </div>
+                
+                <div class="vectors-wrapper">
+                    <div class="vector-input">
+                        <h3>Oferta</h3>
+                        <div id="supply-vector" class="vector"></div>
+                    </div>
+                    
+                    <div class="vector-input">
+                        <h3>Demanda</h3>
+                        <div id="demand-vector" class="vector"></div>
+                    </div>
+                </div>
+                
+                <button id="optimize" class="action-button">
+                    <i class="fas fa-play"></i>
+                    <span>Optimizar</span>
+                </button>
+            </div>
+            
+            <div class="panel solution-panel">
+                <h2>Resultados de Optimización</h2>
+                
+                <div class="results-wrapper">
+                    <div class="result-card total-cost">
+                        <h3>Costo Total</h3>
+                        <div id="total-cost" class="value"></div>
+                    </div>
+                    
+                    <div class="solution-matrix-wrapper">
+                        <h3>Asignación Óptima</h3>
+                        <div id="solution-matrix" class="matrix"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
